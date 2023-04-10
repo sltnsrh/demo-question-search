@@ -63,11 +63,11 @@ public class QuestionController {
         )
         @RequestParam @Positive int count) {
 
-        List<QuestionResponseDto> result = questionService.findTopLongest(count).stream()
+        List<QuestionResponseDto> resultList = questionService.findTopLongest(count).stream()
             .map(questionMapper::toDto)
             .toList();
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(resultList, HttpStatus.OK);
     }
 
     @Operation(
