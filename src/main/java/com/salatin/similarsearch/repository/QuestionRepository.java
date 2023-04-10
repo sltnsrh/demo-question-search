@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     @Query("SELECT q FROM Question q ORDER BY LENGTH(q.text) DESC")
-    List<Question> findTopXByOrderByLengthDesc(int limit);
+    List<Question> findTopLongestByOrderDesc(int limit);
 }
