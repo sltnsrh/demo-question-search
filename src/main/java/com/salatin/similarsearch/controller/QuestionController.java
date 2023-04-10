@@ -2,6 +2,7 @@ package com.salatin.similarsearch.controller;
 
 import com.salatin.similarsearch.model.Question;
 import com.salatin.similarsearch.service.QuestionService;
+import jakarta.validation.constraints.Positive;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,8 @@ public class QuestionController {
     private final QuestionService questionService;
 
     @GetMapping("/top-longest")
-    public ResponseEntity<List<Question>> findTopLongest(@RequestParam int count) {
+    public ResponseEntity<List<Question>> findTopLongest(
+        @RequestParam @Positive int count) {
 
         return new ResponseEntity<>(questionService.findTopLongestQuestions(count), HttpStatus.OK);
     }
