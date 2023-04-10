@@ -1,8 +1,9 @@
 package com.salatin.similarsearch.controller;
 
-import com.salatin.similarsearch.model.Question;
 import com.salatin.similarsearch.model.dto.request.TopSimilarRequestDto;
+import com.salatin.similarsearch.model.dto.response.QuestionResponseDto;
 import com.salatin.similarsearch.service.QuestionService;
+import com.salatin.similarsearch.service.mapper.QuestionMapper;
 import jakarta.validation.constraints.Positive;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -22,20 +23,29 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 public class QuestionController {
     private final QuestionService questionService;
+    private final QuestionMapper questionMapper;
 
     @GetMapping("/top-longest")
-    public ResponseEntity<List<Question>> findTopLongest(
+    public ResponseEntity<List<QuestionResponseDto>> findTopLongest(
         @RequestParam @Positive int count) {
 
-        return new ResponseEntity<>(questionService.findTopLongest(count), HttpStatus.OK);
+        List<QuestionResponseDto> result = questionService.findTopLongest(count).stream()
+            .map(questionMapper::toDto)
+            .toList();
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("top-most-similar")
-    public ResponseEntity<List<Question>> findTopSimilar(
+    public ResponseEntity<List<QuestionResponseDto>> findTopSimilar(
         @RequestBody TopSimilarRequestDto requestDto) {
 
-        return new ResponseEntity<>(
-            questionService.findTopSimilar(requestDto.getCount(), requestDto.getQuestion()),
+        List<QuestionResponseDto> resultList = questionService
+            .findTopSimilar(requestDto.getCount(), requestDto.getQuestion()).stream()
+            .map(questionMapper::toDto)
+            .toList();
+
+        return new ResponseEntity<>(resultList,
             HttpStatus.OK);
     }
 }
