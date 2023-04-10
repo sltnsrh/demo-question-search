@@ -5,5 +5,7 @@ import java.util.List;
 
 public interface QuestionService {
 
-    List<Question> findTopLongestQuestions(int count);
+    List<Question> findTopLongest(int count);
+
+    List<Question> findTopSimilar(int count, String question);
 }

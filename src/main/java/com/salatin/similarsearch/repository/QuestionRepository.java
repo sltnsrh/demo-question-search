@@ -13,4 +13,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Query(value = "SELECT * FROM questions q ORDER BY LENGTH(q.text) DESC LIMIT :count",
         nativeQuery = true)
     List<Question> findTopLongestByOrderDesc(@Param("count") int count);
+
+    @Query(value = "from Question q where lower(q.text) like :word%")
+    List<Question> findByWordStartingWith(String word);
 }
