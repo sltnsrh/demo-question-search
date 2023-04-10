@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface QuestionService {
 
-    List<Question> findTopLongestQuestions(int limit);
+    List<Question> findTopLongestQuestions(int count);
 }

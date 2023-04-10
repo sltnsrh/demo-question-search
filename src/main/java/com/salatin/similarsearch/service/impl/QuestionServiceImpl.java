@@ -13,7 +13,7 @@ public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
 
     @Override
-    public List<Question> findTopLongestQuestions(int limit) {
-        return questionRepository.findTopLongestByOrderDesc(limit);
+    public List<Question> findTopLongestQuestions(int count) {
+        return questionRepository.findTopLongestByOrderDesc(count);
     }
 }

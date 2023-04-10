@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuestionController {
     private final QuestionService questionService;
 
-    @GetMapping
+    @GetMapping("/top-longest")
     public ResponseEntity<List<Question>> findTopLongest(@RequestParam int count) {
+
         return new ResponseEntity<>(questionService.findTopLongestQuestions(count), HttpStatus.OK);
     }
 }
