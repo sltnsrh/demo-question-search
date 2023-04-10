@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "56ea90f0-22e7-4aeb-add1-08a1a8af70f0",
+		"name": "QuestionsSearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22714477"
+	},
+	"item": [
+		{
+			"name": "Find Top Longest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/questions/top-longest?count=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"top-longest"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Top Similar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count\": 10,\n    \"question\": \"What your favorite book?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/questions/top-most-similar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"top-most-similar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
