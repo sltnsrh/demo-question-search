@@ -74,8 +74,7 @@ public class QuestionServiceImpl implements QuestionService {
     private String getFirstWord(String question) {
         return (question.replaceAll(NOT_SYMBOLS_PATTERN, WHITESPACE_SYMBOL)
                 .trim()
-                .split(WHITESPACES_PATTERN)[0] + WHITESPACE_SYMBOL
-        )
+                .split(WHITESPACES_PATTERN)[0] + WHITESPACE_SYMBOL)
             .toLowerCase();
     }
 
