@@ -1,13 +1,13 @@
-package com.salatin.similarsearch;
+package com.salatin.questionsearch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SimilarSearchApplication {
+public class QuestionSearchApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SimilarSearchApplication.class, args);
+		SpringApplication.run(QuestionSearchApplication.class, args);
 	}
 
 }

@@ -1,9 +1,9 @@
-package com.salatin.similarsearch.service.impl;
+package com.salatin.questionsearch.service.impl;
 
-import com.salatin.similarsearch.model.Question;
-import com.salatin.similarsearch.model.dto.SimilarQuestion;
-import com.salatin.similarsearch.repository.QuestionRepository;
-import com.salatin.similarsearch.service.QuestionService;
+import com.salatin.questionsearch.model.Question;
+import com.salatin.questionsearch.model.dto.SimilarQuestion;
+import com.salatin.questionsearch.repository.QuestionRepository;
+import com.salatin.questionsearch.service.QuestionService;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

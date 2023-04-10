@@ -1,4 +1,4 @@
-package com.salatin.similarsearch.model;
+package com.salatin.questionsearch.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

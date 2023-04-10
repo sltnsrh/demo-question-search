@@ -1,10 +1,10 @@
-package com.salatin.similarsearch.controller;
+package com.salatin.questionsearch.controller;
 
-import com.salatin.similarsearch.exception.ApiExceptionObject;
-import com.salatin.similarsearch.model.dto.request.TopSimilarRequestDto;
-import com.salatin.similarsearch.model.dto.response.QuestionResponseDto;
-import com.salatin.similarsearch.service.QuestionService;
-import com.salatin.similarsearch.service.mapper.QuestionMapper;
+import com.salatin.questionsearch.exception.ApiExceptionObject;
+import com.salatin.questionsearch.model.dto.request.TopSimilarRequestDto;
+import com.salatin.questionsearch.model.dto.response.QuestionResponseDto;
+import com.salatin.questionsearch.service.QuestionService;
+import com.salatin.questionsearch.service.mapper.QuestionMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

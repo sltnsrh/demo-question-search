@@ -1,6 +1,6 @@
-package com.salatin.similarsearch.model.dto;
+package com.salatin.questionsearch.model.dto;
 
-import com.salatin.similarsearch.model.Question;
+import com.salatin.questionsearch.model.Question;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

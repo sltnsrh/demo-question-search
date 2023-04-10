@@ -1,10 +1,10 @@
-package com.salatin.similarsearch;
+package com.salatin.questionsearch;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SimilarSearchApplicationTests {
+class QuestionSearchApplicationTests {
 
 	@Test
 	void contextLoads() {

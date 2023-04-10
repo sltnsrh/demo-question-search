@@ -1,4 +1,4 @@
-package com.salatin.similarsearch.exception;
+package com.salatin.questionsearch.exception;
 
 import jakarta.validation.ConstraintViolationException;
 import java.time.LocalDateTime;

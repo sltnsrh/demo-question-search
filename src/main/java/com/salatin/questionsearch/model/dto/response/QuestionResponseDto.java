@@ -1,4 +1,4 @@
-package com.salatin.similarsearch.model.dto.response;
+package com.salatin.questionsearch.model.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package com.salatin.similarsearch.repository;
+package com.salatin.questionsearch.repository;
 
-import com.salatin.similarsearch.model.Question;
+import com.salatin.questionsearch.model.Question;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

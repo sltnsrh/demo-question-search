@@ -1,6 +1,6 @@
-package com.salatin.similarsearch.service;
+package com.salatin.questionsearch.service;
 
-import com.salatin.similarsearch.model.Question;
+import com.salatin.questionsearch.model.Question;
 import java.util.List;
 
 public interface QuestionService {

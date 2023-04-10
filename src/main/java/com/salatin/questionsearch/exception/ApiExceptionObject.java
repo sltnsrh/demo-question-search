@@ -1,4 +1,4 @@
-package com.salatin.similarsearch.exception;
+package com.salatin.questionsearch.exception;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
