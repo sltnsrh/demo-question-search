@@ -3,10 +3,12 @@ package com.salatin.similarsearch.service.impl;
 import com.salatin.similarsearch.model.Question;
 import com.salatin.similarsearch.repository.QuestionRepository;
 import com.salatin.similarsearch.service.QuestionService;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -69,22 +71,34 @@ public class QuestionServiceImpl implements QuestionService {
             .replaceAll(NOT_SYMBOLS_PATTERN, " ")
             .split(WHITESPACES_PATTERN);
 
-        int commonWords = 0;
-        int totalWords = 0;
+//        int commonWords = 0;
+//        int totalWords = 0;
+//
+//        for (String word1 : queryWords) {
+//            if (word1.length() > 3) {
+//                totalWords++;
+//
+//                for (String word2 : candidateWords) {
+//                    if (word2.length() > 3 && word1.equalsIgnoreCase(word2)) {
+//                        commonWords++;
+//                        break;
+//                    }
+//                }
+//            }
+//        }
 
-        for (String word1 : queryWords) {
-            if (word1.length() > 3) {
-                totalWords++;
+        AtomicInteger totalWords = new AtomicInteger();
 
-                for (String word2 : candidateWords) {
-                    if (word2.length() > 3 && word1.equalsIgnoreCase(word2)) {
-                        commonWords++;
-                        break;
-                    }
-                }
-            }
-        }
+        int commonWords = (int) Arrays.stream(queryWords)
+            .filter(word1 -> word1.length() > 3)
+            .peek(word -> totalWords.incrementAndGet())
+            .flatMap(word1 -> Arrays.stream(candidateWords)
+                .filter(word2 -> word2.length() > 3)
+                .filter(word2 -> word1.equalsIgnoreCase(word2))
+            )
+            .distinct()
+            .count();
 
-        return (double) commonWords / totalWords;
+        return (double) commonWords / totalWords.get();
     }
 }
