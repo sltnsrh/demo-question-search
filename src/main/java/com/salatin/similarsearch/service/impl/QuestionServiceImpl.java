@@ -1,13 +1,14 @@
 package com.salatin.similarsearch.service.impl;
 
 import com.salatin.similarsearch.model.Question;
+import com.salatin.similarsearch.model.dto.SimilarQuestion;
 import com.salatin.similarsearch.repository.QuestionRepository;
 import com.salatin.similarsearch.service.QuestionService;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,18 +37,18 @@ public class QuestionServiceImpl implements QuestionService {
 
         List<Question> candidates = questionRepository.findByWordStartingWith(firstWord);
 
-        TreeMap<Double, Question> similarityMap = new TreeMap<>(Collections.reverseOrder());
+        Queue<SimilarQuestion> similarQuestions = new PriorityQueue<>(Collections.reverseOrder());
 
-        candidates.forEach(candidate ->
-            similarityMap.put(
-                calculateSimilarity(question, candidate.getText()),
-                candidate)
+        candidates.forEach(candidate -> {
+                double similarity = calculateSimilarity(question, candidate.getText());
+                similarQuestions.add(new SimilarQuestion(similarity, candidate));
+            }
         );
 
-        if (!similarityMap.isEmpty() && similarityMap.firstKey() > 0) {
-            return similarityMap.entrySet().stream()
-                .filter(entry -> entry.getKey() > 0)
-                .map(Map.Entry::getValue)
+        if (!similarQuestions.isEmpty() && similarQuestions.peek().getSimilarity() > 0) {
+            return similarQuestions.stream()
+                .filter(s -> s.getSimilarity() > 0)
+                .map(SimilarQuestion::getQuestion)
                 .limit(count)
                 .toList();
         }
@@ -71,22 +72,6 @@ public class QuestionServiceImpl implements QuestionService {
             .replaceAll(NOT_SYMBOLS_PATTERN, " ")
             .split(WHITESPACES_PATTERN);
 
-//        int commonWords = 0;
-//        int totalWords = 0;
-//
-//        for (String word1 : queryWords) {
-//            if (word1.length() > 3) {
-//                totalWords++;
-//
-//                for (String word2 : candidateWords) {
-//                    if (word2.length() > 3 && word1.equalsIgnoreCase(word2)) {
-//                        commonWords++;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-
         AtomicInteger totalWords = new AtomicInteger();
 
         int commonWords = (int) Arrays.stream(queryWords)
@@ -94,7 +79,7 @@ public class QuestionServiceImpl implements QuestionService {
             .peek(word -> totalWords.incrementAndGet())
             .flatMap(word1 -> Arrays.stream(candidateWords)
                 .filter(word2 -> word2.length() > 3)
-                .filter(word2 -> word1.equalsIgnoreCase(word2))
+                .filter(word1::equalsIgnoreCase)
             )
             .distinct()
             .count();

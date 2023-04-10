@@ -1,7 +1,7 @@
 package com.salatin.similarsearch.controller;
 
 import com.salatin.similarsearch.model.Question;
-import com.salatin.similarsearch.model.dto.TopSimilarRequestDto;
+import com.salatin.similarsearch.model.dto.request.TopSimilarRequestDto;
 import com.salatin.similarsearch.service.QuestionService;
 import jakarta.validation.constraints.Positive;
 import java.util.List;
